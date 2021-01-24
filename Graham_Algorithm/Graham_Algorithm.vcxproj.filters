@@ -26,6 +26,9 @@
     <ClInclude Include="Punkt.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Stos.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="points1.txt">

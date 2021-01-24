@@ -11,8 +11,8 @@ private:
 
 public:
 	Punkt() {
-		this->x = 0;
-		this->y = 0;
+		this->x = 1;
+		this->y = 1;
 	}
 
 	Punkt(double x, double y) {
@@ -20,16 +20,16 @@ public:
 		this->y = y;
 	}
 
-	double get_x() {
+	double pokaz_x() {
 		return this->x;
 	}
 
-	double get_y() {
+	double pokaz_y() {
 		return this->y;
 	}
 
 	bool to_ten_sam_pkt(Punkt pkt) {
-		if (this->x == pkt.get_x() && this->y == pkt.get_y()) return true;
+		if (this->x == pkt.pokaz_x() && this->y == pkt.pokaz_y()) return true;
 		else return false;
 	}
 

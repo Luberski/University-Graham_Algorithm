@@ -144,6 +144,7 @@
   <ItemGroup>
     <ClInclude Include="Punkt.h" />
     <ClInclude Include="Lista.h" />
+    <ClInclude Include="Stos.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="points1.txt" />

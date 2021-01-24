@@ -2,6 +2,7 @@
 #include "Punkt.h"
 #include <vector>
 #include "Lista.h"
+#include "Stos.h"
 #include <fstream>
 #include <sstream>
 #include <string>
@@ -14,21 +15,17 @@ Lista<pkt> importuj(string nazwa_pliku) {
 	fstream plik(nazwa_pliku, ios_base::in);
 	string wiersz;
 	int rozmiar;
-	long double x, y;
 	
-	if (!(plik >> rozmiar)) {
-		cout << "Wystapil blad" << endl;
-		return NULL;
-	}
-	else {
-		Lista<pkt> 
-	}
+	double x, y;
+	(plik >> rozmiar);
 
-	printf("%d\n", rozmiar);
+	Lista<pkt> Punkty = Lista<pkt>(rozmiar);
 	while (plik >> x >> y) {
-
-		cout << setprecision(14) << x << " " << y << endl;
+		pkt p(x, y);
+		Punkty.dodaj_pkt(p);
 	}
+
+	return Punkty;
 }
 
 template<class pkt>
@@ -45,9 +42,30 @@ public:
 		punkty = lista;
 	}
 
+	int punkt_startowy() {
+		pkt najnizszy = pkt();
+		int indeks = 0;
+
+		for (int i = 0; i < punkty.ilosc_elem(); i++) {
+			if (punkty[i].pokaz_y() < najnizszy.pokaz_y() ||
+				(punkty[i].pokaz_y() == najnizszy.pokaz_y() && punkty[i].pokaz_x() < najnizszy.pokaz_x())) {
+				najnizszy = punkty[i];
+				indeks = i;
+			}
+		}
+
+		return indeks;
+	}
+
 };
 
 int main()
 {
-	importuj<Punkt>("points1.txt");
+	
+	Lista<Punkt> a = (importuj<Punkt>("points4.txt"));
+	Graham_Algorithm<Punkt> graham = Graham_Algorithm<Punkt>(a);
+	int i = graham.punkt_startowy();
+
+	cout << i << ": " << a[i].pokaz_x() << " " << a[i].pokaz_y() << endl;
+
 }
