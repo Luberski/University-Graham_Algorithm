@@ -1,6 +1,6 @@
 #pragma once
 #include <iostream>
-#include <iomanip>
+
 
 using namespace std;
 
@@ -13,42 +13,44 @@ private:
 
 
 public:
-	Lista() {}
+	Lista() { // tested
+		this->lista = new T[1000]; 
+		this->rozmiar = 1000; }
 
-	Lista(int rozmiar) {
-		lista = new T[rozmiar];
+	Lista(int rozmiar) { // tested
+		this->lista = new T[rozmiar];
 		this->rozmiar = rozmiar;
 	}
 
-	T& operator[](int indeks)
+	T& operator[](int indeks) // tested
 	{
-		if (indeks >= rozmiar) {
+		if (indeks >= this->rozmiar) {
 			cout << "Indeks przekracza rozmiar tablicy";
 			exit(0);
 		}
-		return lista[indeks];
+		return this->lista[indeks];
 	}
 
-	T pokaz(int indeks) {
-		if (indeks >= rozmiar) {
-			cout << "Indeks przekracza rozmiar tablicy";
-			exit(0);
+	void zamien_miejscami(int ind1, int ind2) { // tested
+		if (ind1 != ind2) {
+			T temp = this->lista[ind1];
+			this->lista[ind1] = this->lista[ind2];
+			this->lista[ind2] = temp;
 		}
-		return lista[indeks];
 	}
 
-	void dodaj_pkt(T Punkt) {
-		lista[ie] = Punkt;
+	void dodaj_pkt(T Punkt) { // tested
+		this->lista[this->ie] = Punkt;
 		this->ie++;
 	}
 
-	int ilosc_elem() {
-		return ie;
+	int ilosc_elem() { // tested
+		return this->ie;
 	}
 
 	void pokaz_zbior() {
 		for (int i = 0; i < this->ie; i++) {
-			cout << setprecision(13) << lista[i].pokaz_x() << " " <<  lista[i].pokaz_y() << endl;
+			lista[i].wypisz_kordy();
 		}
 	}
 

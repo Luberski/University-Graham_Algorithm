@@ -12,25 +12,28 @@ private:
 	int ie = 0;
 
 public:
-	Stos() {}
+	Stos() {
+		this->stos = new T[1000];
+		this->rozmiar = 1000;
+	}
 
 	Stos(int rozmiar) {
-		stos = new T[rozmiar];
+		this->stos = new T[rozmiar];
 		this->rozmiar = rozmiar;
 	}
 
 	void wloz(T pkt) {
-		stos[ie] = pkt;
+		this->stos[ie] = pkt;
 		this->ie++;
 	}
 
 	void zdejmij() {
-		ie--;
+		this->ie--;
 	}
 	
 	void pokaz_zbior() {
 		for (int i = 0; i < this->ie - 1; i++) {
-			cout << setprecision(13) << stos[i].pokaz_x() << " " << stos[i].pokaz_y() << endl;
+			cout << setprecision(13) << this->stos[i].wypisz_kordy() << endl;
 		}
 	}
 
